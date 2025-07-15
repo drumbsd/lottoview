@@ -1,15 +1,34 @@
-# 🎲 Tabellone Estrazioni del Lotto
+# 🎲 Lotto View - Tabellone e Analisi Ciclometrica
 
-Un'applicazione web moderna per visualizzare le estrazioni del lotto italiano in formato tabellare, con le date delle estrazioni come righe e le ruote come colonne.
+Un'applicazione web moderna per visualizzare le estrazioni del lotto italiano con tabellone interattivo e analisi ciclometrica avanzata per previsioni e statistiche.
 
-## ✨ Caratteristiche
+## 📸 Screenshots
 
-- **Dati reali del lotto**: Integrazione con dati reali delle estrazioni del lotto italiano
-- **Design moderno e responsive**: Interface accattivante che si adatta a tutti i dispositivi
-- **Tabellone completo**: Visualizza tutte le 11 ruote del lotto italiano
-- **Informazioni dettagliate**: Mostra data dell'ultima estrazione e statistiche
-- **Formato chiaro**: Date delle estrazioni in formato italiano con numeri ben organizzati
-- **Hover effects**: Interazioni visive per migliorare l'esperienza utente
+### Tabellone delle Estrazioni
+![Tabellone Lotto](screenshot-tabellone.png)
+
+### Cerchio Ciclometrico con Analisi
+![Cerchio Ciclometrico](screenshot-ciclometrico.png)
+
+## ✨ Caratteristiche Principali
+
+### 📊 **Tabellone Interattivo**
+- **50 estrazioni storiche**: Visualizza le ultime 50 estrazioni del lotto italiano
+- **Selezione numeri**: Clicca su qualsiasi numero per evidenziarlo in tutte le estrazioni
+- **Doppi ambi**: Rileva e evidenzia automaticamente i doppi ambi presenti
+- **Design responsive**: Interfaccia moderna che si adatta a tutti i dispositivi
+
+### ⭕ **Cerchio Ciclometrico**
+- **90 numeri interattivi**: Cerchio completo con tutti i numeri del lotto (1-90)
+- **Selezione ruote**: Scegli qualsiasi ruota per l'analisi ciclometrica
+- **Visualizzazione poligoni**: Mostra le distanze ciclometriche come poligoni colorati
+- **Predizioni intelligenti**: Sistema di previsioni basato su algoritmi ciclometrici avanzati
+
+### 🔮 **Sistema di Predizioni**
+- **Ambate ciclometriche**: Suggerimenti per numeri singoli basati su distanze matematiche
+- **Ambi intelligenti**: Previsioni per coppie di numeri (consecutivi, speculari, distanze specifiche)
+- **Confidence score**: Ogni previsione include un punteggio di affidabilità
+- **Spiegazioni dettagliate**: Mostra il ragionamento dietro ogni suggerimento
 
 ## 🎯 Ruote del Lotto
 
@@ -49,15 +68,26 @@ I file di produzione saranno generati nella cartella `dist/`.
 
 ## 🛠️ Tecnologie utilizzate
 
-- **React 18**: Framework per l'interfaccia utente
-- **TypeScript**: Linguaggio tipizzato per maggiore robustezza
-- **Vite**: Build tool veloce e moderno
-- **CSS3**: Styling avanzato con gradients e animazioni
+- **React 18**: Framework moderno con hooks e componenti funzionali
+- **TypeScript**: Linguaggio tipizzato per codice robusto e manutenibile  
+- **Vite**: Build tool ultra-veloce con hot module reloading
+- **CSS3**: Styling avanzato con gradients, animazioni e SVG
+- **Algoritmi Matematici**: Calcoli ciclometrici per analisi predittiva
+
+## 🎯 Algoritmi Ciclometrici
+
+L'applicazione utilizza algoritmi matematici avanzati per l'analisi:
+- **Distanze ciclometriche**: Calcolo delle distanze minime nel cerchio 1-90
+- **Pattern detection**: Rilevamento di sequenze e ricorrenze numeriche
+- **Analisi statistica**: Frequenze, ritardi e distribuzioni dei numeri
+- **Previsioni ponderate**: Suggerimenti basati su multiple variabili matematiche
 
 ## 📱 Design Responsive
 
-L'applicazione è completamente responsive e si adatta a:
-- Desktop (1200px+)
+L'applicazione è completamente responsive e ottimizzata per:
+- Desktop (1200px+): Visualizzazione completa con tutti i dettagli
+- Tablet (768px+): Layout adattivo mantenendo funzionalità
+- Mobile (320px+): Interface touch-friendly e navigazione semplificata
 - Tablet (768px - 1199px)
 - Mobile (< 768px)
 
