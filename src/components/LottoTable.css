@@ -1,0 +1,253 @@
+/* CSS Reset specifico per la tabella del lotto */
+.lotto-table-container * {
+  box-sizing: border-box;
+}
+
+.lotto-table-container {
+  padding: 20px;
+  background: transparent;
+  overflow: visible;
+  /* Forza il comportamento normale della tabella */
+  display: block !important;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 15px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.15),
+    0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+  width: 100%;
+  max-width: 100%;
+}
+
+.lotto-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  min-width: 1200px;
+  table-layout: fixed !important;
+  display: table !important;
+  /* Resetta qualsiasi interferenza CSS */
+  flex-direction: initial !important;
+  flex-wrap: initial !important;
+}
+
+.lotto-table thead {
+  display: table-header-group !important;
+}
+
+.lotto-table tbody {
+  display: table-row-group !important;
+}
+
+.lotto-table tr {
+  display: table-row !important;
+  flex-direction: initial !important;
+}
+
+.lotto-table th,
+.lotto-table td {
+  display: table-cell !important;
+  flex-direction: initial !important;
+  flex-basis: auto !important;
+}
+
+.lotto-table th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px 8px;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.lotto-table th:last-child {
+  border-right: none;
+}
+
+.date-header {
+  min-width: 140px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+}
+
+.wheel-header {
+  min-width: 140px;
+  font-size: 13px;
+}
+
+.lotto-table td {
+  padding: 12px 8px;
+  text-align: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  vertical-align: middle;
+}
+
+.lotto-table td:last-child {
+  border-right: none;
+}
+
+.even-row {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.odd-row {
+  background-color: rgba(248, 249, 250, 0.95);
+}
+
+.lotto-table tr:hover {
+  background-color: rgba(227, 242, 253, 0.98) !important;
+  transition: background-color 0.3s ease;
+  transform: scale(1.002);
+}
+
+.date-cell {
+  font-weight: 600;
+  color: #2c3e50;
+  background-color: rgba(227, 242, 253, 0.9);
+  min-width: 140px;
+  font-size: 13px;
+  border-right: 2px solid rgba(103, 126, 234, 0.3);
+}
+
+.numbers-cell {
+  padding: 8px 4px;
+}
+
+.numbers-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  min-height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lottery-number {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 12px;
+  min-width: 24px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.lottery-number:hover {
+  transform: scale(1.05);
+}
+
+.selected-number {
+  background: linear-gradient(135deg, #8e44ad, #9b59b6) !important;
+  box-shadow: 0 0 0 3px #e74c3c, 0 4px 12px rgba(142, 68, 173, 0.4) !important;
+  animation: pulseSelected 1.5s infinite;
+}
+
+@keyframes pulseSelected {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 3px #e74c3c, 0 4px 12px rgba(142, 68, 173, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 4px #e74c3c, 0 6px 16px rgba(142, 68, 173, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 3px #e74c3c, 0 4px 12px rgba(142, 68, 173, 0.4);
+  }
+}
+
+/* When a number is both selected and part of a double ambo */
+.selected-number.double-ambo-highlight {
+  background: linear-gradient(135deg, #e67e22, #d35400) !important;
+  box-shadow: 0 0 0 3px #e74c3c, 0 0 0 6px #f1c40f, 0 6px 16px rgba(230, 126, 34, 0.6) !important;
+}
+
+@keyframes pulseAmbo {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 2px #f1c40f, 0 4px 8px rgba(243, 156, 18, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 3px #f39c12, 0 6px 12px rgba(243, 156, 18, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 2px #f1c40f, 0 4px 8px rgba(243, 156, 18, 0.3);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .lotto-table-container {
+    padding: 10px;
+  }
+  
+  .lotto-table {
+    font-size: 12px;
+    min-width: 1000px;
+  }
+  
+  .lotto-table th,
+  .lotto-table td {
+    padding: 8px 4px;
+  }
+  
+  .wheel-header {
+    font-size: 11px;
+    min-width: 120px;
+  }
+  
+  .date-cell {
+    font-size: 11px;
+    min-width: 120px;
+  }
+  
+  .lottery-number {
+    font-size: 11px;
+    padding: 4px 6px;
+    min-width: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lotto-table {
+    min-width: 800px;
+  }
+  
+  .wheel-header,
+  .date-cell {
+    min-width: 100px;
+  }
+  
+  .numbers-container {
+    gap: 2px;
+  }
+  
+  .lottery-number {
+    font-size: 10px;
+    padding: 3px 5px;
+    min-width: 18px;
+  }
+}
