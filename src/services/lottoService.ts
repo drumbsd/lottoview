@@ -197,90 +197,6 @@ const REAL_LOTTERY_EXTRACTIONS: ScrapedLottoData[] = [
 ];
 
 // Generate statistically realistic lottery numbers based on real patterns
-const generateStatisticallyRealisticNumbers = (): number[] => {
-  const numbers: number[] = [];
-  
-  // Italian lottery statistical patterns:
-  // - Numbers 1-30 appear more frequently than 60-90
-  // - Even/odd distribution should be roughly balanced
-  // - Avoid too many consecutive numbers
-  // - Common ranges: 1-18, 19-45, 46-72, 73-90
-  
-  const ranges = [
-    { min: 1, max: 18, weight: 0.3 },
-    { min: 19, max: 45, weight: 0.35 },
-    { min: 46, max: 72, weight: 0.25 },
-    { min: 73, max: 90, weight: 0.1 }
-  ];
-  
-  while (numbers.length < 5) {
-    // Select range based on weights
-    const random = Math.random();
-    let cumulativeWeight = 0;
-    let selectedRange = ranges[0];
-    
-    for (const range of ranges) {
-      cumulativeWeight += range.weight;
-      if (random <= cumulativeWeight) {
-        selectedRange = range;
-        break;
-      }
-    }
-    
-    const num = Math.floor(Math.random() * (selectedRange.max - selectedRange.min + 1)) + selectedRange.min;
-    
-    if (!numbers.includes(num)) {
-      numbers.push(num);
-    }
-  }
-  
-  return numbers.sort((a, b) => a - b);
-};
-
-// Generate realistic historical data based on real lottery patterns
-const generateRealisticHistoricalData = (): ScrapedLottoData[] => {
-  const historicalData: ScrapedLottoData[] = [];
-  const baseDate = new Date('2025-06-28');
-  
-  // Generate 40 more extractions to reach 50 total (10 real + 40 historical)
-  for (let i = 0; i < 40; i++) {
-    const extractionDate = new Date(baseDate);
-    
-    // Calculate previous extraction dates (Tuesday, Thursday, Saturday)
-    let daysBack = 0;
-    let extractionsFound = 0;
-    
-    while (extractionsFound <= i) {
-      daysBack++;
-      const checkDate = new Date(baseDate);
-      checkDate.setDate(baseDate.getDate() - daysBack);
-      
-      // Check if it's an extraction day (Tuesday=2, Thursday=4, Saturday=6)
-      if ([2, 4, 6].includes(checkDate.getDay())) {
-        extractionsFound++;
-        if (extractionsFound === i + 1) {
-          extractionDate.setTime(checkDate.getTime());
-        }
-      }
-    }
-
-    const wheels: Record<string, number[]> = {};
-    
-    // Generate realistic numbers based on real lottery statistics
-    Object.keys(wheelNameMap).forEach(wheelName => {
-      wheels[wheelName] = generateStatisticallyRealisticNumbers();
-    });
-
-    historicalData.push({
-      extractionNumber: 102 - i, // Counting backwards from 102
-      date: extractionDate.toISOString().split('T')[0],
-      wheels
-    });
-  }
-  
-  return historicalData;
-};
-
 // Function to fetch real lottery data from official sources
 const fetchRealLotteryData = async (): Promise<ScrapedLottoData[]> => {
   try {
@@ -289,13 +205,10 @@ const fetchRealLotteryData = async (): Promise<ScrapedLottoData[]> => {
     // - https://www.estrazionedellotto.it/
     // - Official Sisal APIs
     
-    // For now, we'll use our curated real data and supplement with historical patterns
+    // For now, we'll use ONLY our curated real data - NO FAKE EXTRACTIONS
     const realData = [...REAL_LOTTERY_EXTRACTIONS];
     
-    // Generate additional realistic extractions based on real patterns
-    const additionalExtractions = generateRealisticHistoricalData();
-    
-    return [...realData, ...additionalExtractions];
+    return realData;
   } catch (error) {
     console.error('Error fetching real lottery data:', error);
     // Fallback to curated real data
@@ -303,50 +216,12 @@ const fetchRealLotteryData = async (): Promise<ScrapedLottoData[]> => {
   }
 };
 
-// Generate next extraction date (Tuesday, Thursday, Saturday)
-const getNextExtractionDate = (lastDate: Date): Date => {
-  const next = new Date(lastDate);
-  next.setDate(next.getDate() + 1);
-  
-  while (![2, 4, 6].includes(next.getDay())) {
-    next.setDate(next.getDate() + 1);
-  }
-  
-  return next;
-};
-
-// Generate a new extraction with realistic numbers
-const generateNewRealExtraction = (date: Date): ScrapedLottoData => {
-  const wheels: Record<string, number[]> = {};
-  
-  Object.keys(wheelNameMap).forEach(wheelName => {
-    wheels[wheelName] = generateStatisticallyRealisticNumbers();
-  });
-  
-  return {
-    extractionNumber: 113, // Next extraction number after 112
-    date: date.toISOString().split('T')[0],
-    wheels
-  };
-};
-
 // Function to check for the latest extraction and auto-update
 const checkForLatestExtraction = async (): Promise<ScrapedLottoData | null> => {
   try {
-    const today = new Date();
-    const lastKnownExtraction = new Date('2025-07-15');
-    
-    // Check if we need an update (more than 2 days since last extraction)
-    const daysDiff = Math.floor((today.getTime() - lastKnownExtraction.getTime()) / (1000 * 60 * 60 * 24));
-    
-    if (daysDiff >= 2) {
-      // In a real app, this would fetch from the official API
-      const newExtractionDate = getNextExtractionDate(lastKnownExtraction);
-      if (newExtractionDate <= today) {
-        return generateNewRealExtraction(newExtractionDate);
-      }
-    }
-    
+    // NON GENERARE ESTRAZIONI AUTOMATICHE - SOLO DATI REALI
+    // In a real implementation, this would only fetch from official sources
+    // and never generate fake extractions for future dates
     return null;
   } catch (error) {
     console.warn('Could not check for latest extraction:', error);
