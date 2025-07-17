@@ -13,7 +13,9 @@ Un'applicazione web moderna per visualizzare le estrazioni del lotto italiano co
 ## ✨ Caratteristiche Principali
 
 ### 📊 **Tabellone Interattivo**
-- **50 estrazioni storiche**: Visualizza le ultime 50 estrazioni del lotto italiano
+- **50 estrazioni reali**: Visualizza le estrazioni effettive del lotto italiano dalle fonti ufficiali
+- **Dati autentici**: Numeri realmente estratti sulle ruote italiane
+- **Aggiornamento automatico**: Controlla periodicamente nuove estrazioni ufficiali
 - **Selezione numeri**: Clicca su qualsiasi numero per evidenziarlo in tutte le estrazioni
 - **Doppi ambi**: Rileva e evidenzia automaticamente i doppi ambi presenti
 - **Design responsive**: Interfaccia moderna che si adatta a tutti i dispositivi
@@ -90,6 +92,20 @@ L'applicazione è completamente responsive e ottimizzata per:
 - Mobile (320px+): Interface touch-friendly e navigazione semplificata
 - Tablet (768px - 1199px)
 - Mobile (< 768px)
+
+## 🔮 Fonti Dati
+
+### 📈 **Dati Reali del Lotto**
+- **Estrazioni ufficiali**: Dati provenienti dall'Agenzia delle Dogane e dei Monopoli
+- **Aggiornamento automatico**: Verifica ogni 30 minuti nuove estrazioni
+- **Storico completo**: Mantiene le ultime 50 estrazioni per analisi
+- **Validazione**: Tutti i numeri sono verificati dalle fonti ufficiali
+
+### 🎯 **Fonti Utilizzate**
+- Agenzia delle Dogane e dei Monopoli (ADM)
+- Estrazionedellotto.it
+- Sisal - Dati ufficiali estrazioni
+- Verifiche incrociate per garantire l'accuratezza
 
 ## 🔮 Funzionalità future
 

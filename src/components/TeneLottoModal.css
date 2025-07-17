@@ -1,0 +1,326 @@
+/* 10eLotto Modal Styles */
+.tenelotto-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.tenelotto-modal {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  color: white;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: scale(0.8) translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.tenelotto-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tenelotto-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #ffd700, #ffeb3b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.tenelotto-content {
+  padding: 20px 30px;
+}
+
+.numbers-display {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.numbers-display h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.number-ball {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.number-ball::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s;
+  opacity: 0;
+}
+
+.number-ball:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.number-ball:hover::before {
+  opacity: 1;
+  animation: shine 0.6s ease-in-out;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.confidence-info {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.confidence-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.confidence-label {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.confidence-value {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 5px 15px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.wheels-info {
+  margin-bottom: 20px;
+}
+
+.wheels-info h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  color: #ffd700;
+}
+
+.wheels-info p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.explanations {
+  margin-bottom: 20px;
+}
+
+.explanations h4 {
+  margin: 0 0 15px 0;
+  font-size: 1.2rem;
+  color: #ffd700;
+}
+
+.explanations-list {
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.explanation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.bullet {
+  color: #ffd700;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.generation-info {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.generated-time {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.tenelotto-actions {
+  padding: 20px 30px 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-generate,
+.btn-close {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 120px;
+}
+
+.btn-generate {
+  background: linear-gradient(135deg, #4caf50, #8bc34a);
+  color: white;
+}
+
+.btn-generate:hover {
+  background: linear-gradient(135deg, #45a049, #7cb342);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-close {
+  background: linear-gradient(135deg, #f44336, #ff5722);
+  color: white;
+}
+
+.btn-close:hover {
+  background: linear-gradient(135deg, #da190b, #e64a19);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(244, 67, 54, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tenelotto-modal {
+    width: 95%;
+    margin: 10px;
+  }
+  
+  .tenelotto-header,
+  .tenelotto-content,
+  .tenelotto-actions {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .numbers-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  
+  .number-ball {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+  
+  .tenelotto-actions {
+    flex-direction: column;
+  }
+  
+  .btn-generate,
+  .btn-close {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .tenelotto-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .numbers-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  
+  .number-ball {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .explanation-item {
+    font-size: 0.85rem;
+  }
+}

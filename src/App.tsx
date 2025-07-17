@@ -5,15 +5,19 @@ import AmboControls from './components/AmboControls';
 import DoubleAmbiDetails from './components/DoubleAmbiDetails';
 import SelectedNumbers from './components/SelectedNumbers';
 import CiclometricPage from './pages/CiclometricPage';
+import { TeneLottoModal } from './components/TeneLottoModal';
 import { useLottoData } from './hooks/useLottoData';
 import { findDoubleAmbi } from './services/amboAnalysis';
+import { generate10eLottoNumbers, type TeneLottoSuggestion } from './services/teneLottoService';
 import './App.css';
 
 function App() {
-  const { extractions, loading, error } = useLottoData();
+  const { extractions, loading, error, lastUpdated, refresh } = useLottoData();
   const [highlightDoubleAmbi, setHighlightDoubleAmbi] = useState(false);
   const [selectedNumbers, setSelectedNumbers] = useState<Set<number>>(new Set());
   const [showCiclometricPage, setShowCiclometricPage] = useState(false);
+  const [show10eLottoModal, setShow10eLottoModal] = useState(false);
+  const [teneLottoSuggestion, setTeneLottoSuggestion] = useState<TeneLottoSuggestion | null>(null);
 
   // Calculate double ambi when extractions change
   const doubleAmbi = useMemo(() => {
@@ -48,6 +52,18 @@ function App() {
     setShowCiclometricPage(false);
   };
 
+  const handleShow10eLotto = () => {
+    if (extractions.length > 0) {
+      const suggestion = generate10eLottoNumbers(extractions);
+      setTeneLottoSuggestion(suggestion);
+      setShow10eLottoModal(true);
+    }
+  };
+
+  const handleClose10eLotto = () => {
+    setShow10eLottoModal(false);
+  };
+
   // Show ciclometric page if requested
   if (showCiclometricPage) {
     return (
@@ -60,22 +76,27 @@ function App() {
     );
   }
 
-  if (loading) {
+  if (loading && extractions.length === 0) {
     return (
       <div className="app">
         <div className="loading-container">
-          <h2>Caricamento estrazioni del lotto...</h2>
+          <div className="loading-spinner"></div>
+          <h2>🎲 Caricamento dati del lotto...</h2>
+          <p>Verificando nuove estrazioni...</p>
         </div>
       </div>
     );
   }
 
-  if (error) {
+  if (error && extractions.length === 0) {
     return (
       <div className="app">
         <div className="error-container">
-          <h2>Errore nel caricamento</h2>
+          <h2>❌ Errore nel caricamento</h2>
           <p>{error}</p>
+          <button onClick={refresh} className="retry-button">
+            🔄 Riprova
+          </button>
         </div>
       </div>
     );
@@ -99,13 +120,37 @@ function App() {
             <h1>🎲 Tabellone Estrazioni del Lotto</h1>
             <p>Dati reali delle ultime 50 estrazioni del lotto italiano</p>
           </div>
-          <button 
-            className="ciclometric-button"
-            onClick={handleShowCiclometric}
-          >
-            🔄 Cerchio Ciclometrico
-          </button>
+          <div className="header-controls">
+            <button 
+              className="tenelotto-button"
+              onClick={handleShow10eLotto}
+              disabled={loading || extractions.length === 0}
+            >
+              🎯 10eLotto
+            </button>
+            <button 
+              className="ciclometric-button"
+              onClick={handleShowCiclometric}
+            >
+              🔄 Cerchio Ciclometrico
+            </button>
+            <button 
+              onClick={refresh}
+              className="refresh-button"
+              disabled={loading}
+            >
+              {loading ? '🔄' : '↻'} Aggiorna
+            </button>
+          </div>
         </div>
+        {lastUpdated && (
+          <div className="update-info">
+            <small>
+              Ultimo aggiornamento: {lastUpdated.toLocaleString('it-IT')}
+              {loading && ' - Verificando nuovi dati...'}
+            </small>
+          </div>
+        )}
       </header>
       <ExtractionInfo latestExtraction={extractions[0]} />
       <AmboControls 
@@ -132,6 +177,15 @@ function App() {
           onNumberClick={handleNumberClick}
         />
       </main>
+      
+      {/* 10eLotto Modal */}
+      {teneLottoSuggestion && (
+        <TeneLottoModal
+          suggestion={teneLottoSuggestion}
+          isOpen={show10eLottoModal}
+          onClose={handleClose10eLotto}
+        />
+      )}
     </div>
   );
 }

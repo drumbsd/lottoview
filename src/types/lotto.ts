@@ -6,6 +6,7 @@ export interface LottoWheel {
 
 export interface LottoExtraction {
   date: string;
+  extractionNumber?: number;
   results: Record<string, number[]>; // wheel name -> array of 5 numbers
 }
 
