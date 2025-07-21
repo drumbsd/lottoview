@@ -25,57 +25,6 @@ const wheelNameMap: Record<string, string> = {
 // Real lottery data from official sources (extracted from estrazionedellotto.it)
 const REAL_LOTTERY_EXTRACTIONS: ScrapedLottoData[] = [
   {
-    extractionNumber: 115,
-    date: '2025-07-19',
-    wheels: {
-      'Bari': [23, 45, 78, 12, 89],
-      'Cagliari': [67, 34, 12, 78, 45],
-      'Firenze': [89, 23, 56, 34, 12],
-      'Genova': [45, 78, 23, 67, 89],
-      'Milano': [12, 56, 89, 23, 45],
-      'Napoli': [78, 12, 34, 56, 23],
-      'Palermo': [34, 89, 45, 12, 78],
-      'Roma': [56, 23, 78, 45, 34],
-      'Torino': [89, 12, 67, 23, 56],
-      'Venezia': [45, 78, 12, 89, 34],
-      'Nazionale': [23, 56, 34, 78, 12]
-    }
-  },
-  {
-    extractionNumber: 114,
-    date: '2025-07-18',
-    wheels: {
-      'Bari': [34, 67, 23, 78, 45],
-      'Cagliari': [12, 89, 56, 34, 23],
-      'Firenze': [78, 45, 12, 67, 89],
-      'Genova': [23, 56, 78, 12, 34],
-      'Milano': [89, 34, 45, 23, 67],
-      'Napoli': [45, 12, 89, 56, 78],
-      'Palermo': [67, 23, 34, 89, 12],
-      'Roma': [78, 56, 23, 45, 34],
-      'Torino': [12, 89, 67, 78, 23],
-      'Venezia': [34, 45, 56, 12, 89],
-      'Nazionale': [89, 78, 12, 34, 56]
-    }
-  },
-  {
-    extractionNumber: 113,
-    date: '2025-07-17',
-    wheels: {
-      'Bari': [78, 12, 56, 34, 89],
-      'Cagliari': [23, 45, 78, 67, 12],
-      'Firenze': [34, 89, 23, 45, 56],
-      'Genova': [67, 12, 78, 23, 34],
-      'Milano': [45, 56, 89, 12, 78],
-      'Napoli': [12, 34, 67, 89, 23],
-      'Palermo': [89, 78, 45, 56, 34],
-      'Roma': [23, 67, 12, 78, 45],
-      'Torino': [56, 23, 34, 12, 89],
-      'Venezia': [78, 45, 89, 34, 67],
-      'Nazionale': [34, 12, 56, 23, 78]
-    }
-  },
-  {
     extractionNumber: 112,
     date: '2025-07-15',
     wheels: {
